@@ -1,0 +1,77 @@
+[
+    {
+        "id": "528003b7334916e9",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b27b54f3ce81c0b9",
+        "type": "http response",
+        "z": "528003b7334916e9",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 380,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ab21fe06ffdab2b0",
+        "type": "debug",
+        "z": "528003b7334916e9",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e2eabd8a8b5818df",
+        "type": "http in",
+        "z": "528003b7334916e9",
+        "name": "",
+        "url": "/api/from-partdb",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "b27b54f3ce81c0b9",
+                "cdcf24ba180a100c"
+            ]
+        ]
+    },
+    {
+        "id": "cdcf24ba180a100c",
+        "type": "function",
+        "z": "528003b7334916e9",
+        "name": "Lagerplatz",
+        "func": "// Function Node in Node-RED zum Auslesen des Lagerorts\nvar lagerplatz = msg.req.query.lagerplatz;\nmsg.payload = lagerplatz; // Setzt die Nutzdaten auf den reinen Lagerort-String\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "ab21fe06ffdab2b0"
+            ]
+        ]
+    }
+]
