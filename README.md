@@ -7,6 +7,10 @@ This project solves a common workshop problem: quickly finding physical componen
 Core Concept: Browser extension → Node-RED → Physical indicators
 
 ### Start with the documentation
+1. Install the [docker-compose](docker-compose.yml)
+2. Follow the  [csp-modification-guide](/documentation/csp-modification-guide.md)
+3. Follow the  [node-red-flow-guide](/documentation/node-red-flow-guide.md)
+4. Follow the  [esp-setup-guide](/documentation/esp-setup-guide.md)
 
 ### 📁 Project Structure
 ```
@@ -17,5 +21,7 @@ partdb-smart-shelf/
 │   └── partdb-shelf-flow.json     # Node-RED flow import
 ├── docker-compose.yml             # Part-DB & Node-RED setup
 ├── documentation/
-│   └── csp-modification-guide.md  # Detailed CSP change steps
+│   ├── csp-modification-guide.md  # Detailed CSP change steps
+│   └── node-red-flow-guide.md
+│   └── esp-setup-guide.md
 ```
