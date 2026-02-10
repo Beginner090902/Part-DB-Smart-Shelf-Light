@@ -1,3 +1,2 @@
 # Open Node-Red
-And import the json file 
-![Node Red flow](../node-red-flows/flows.json)
+And import the json [flow](../node-red-flows/flows.json) in node-red
