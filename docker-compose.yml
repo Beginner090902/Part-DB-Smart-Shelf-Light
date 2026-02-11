@@ -64,4 +64,18 @@ services:
       - "1880:1880"
     restart: unless-stopped
     volumes:
-      - /home/mb/.node-red:/data
+      - ./node-red:/data
+
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquittoquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+

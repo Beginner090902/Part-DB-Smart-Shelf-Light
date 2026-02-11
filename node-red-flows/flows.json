@@ -14,7 +14,7 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
-        "x": 380,
+        "x": 360,
         "y": 460,
         "wires": []
     },
@@ -32,20 +32,20 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 560,
-        "y": 400,
+        "y": 380,
         "wires": []
     },
     {
         "id": "e2eabd8a8b5818df",
         "type": "http in",
         "z": "528003b7334916e9",
-        "name": "",
-        "url": "/api/from-partdb",
+        "name": "userscript input",
+        "url": "/api/from-partdb-lacation",
         "method": "get",
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 150,
+        "x": 140,
         "y": 380,
         "wires": [
             [
@@ -59,19 +59,99 @@
         "type": "function",
         "z": "528003b7334916e9",
         "name": "Lagerplatz",
-        "func": "// Function Node in Node-RED zum Auslesen des Lagerorts\nvar lagerplatz = msg.req.query.lagerplatz;\nmsg.payload = lagerplatz; // Setzt die Nutzdaten auf den reinen Lagerort-String\nreturn msg;",
+        "func": "// Function Node in Node-RED zum Auslesen des Lagerorts\nvar lagerplatz = msg.req.query.lagerplatz;\nmsg.payload = lagerplatz; // Setzt die Nutzdaten auf den reinen Lagerort-String\nmsg.topic = \"esp32/lagerplatz\";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 370,
         "y": 380,
         "wires": [
             [
+                "ab21fe06ffdab2b0",
+                "d76aaeb56516e54d"
+            ]
+        ]
+    },
+    {
+        "id": "d76aaeb56516e54d",
+        "type": "mqtt out",
+        "z": "528003b7334916e9",
+        "name": "conection to MQTT server",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0c9625f97e407066",
+        "x": 610,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a9e7b4e307476457",
+        "type": "inject",
+        "z": "528003b7334916e9",
+        "name": "Test Button",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "esp32/lagerplatz",
+        "payload": "TEST",
+        "payloadType": "str",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "d76aaeb56516e54d",
                 "ab21fe06ffdab2b0"
             ]
         ]
+    },
+    {
+        "id": "0c9625f97e407066",
+        "type": "mqtt-broker",
+        "name": "Docker MQTT Laptop",
+        "broker": "172.19.0.4",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     }
 ]
